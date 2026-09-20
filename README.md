@@ -68,7 +68,8 @@ my-portfolio/
 ├── js/
 │   └── script.js
 └── assets/
-    └── favicon.svg
+    └── favicon.svg 
+```
 
 ## 🎯 Goals
 
