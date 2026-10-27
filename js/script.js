@@ -1,72 +1,107 @@
+
 console.log("Portfolio loaded.");
+
+// ================================
+// CONTACT FORM
+// ================================
+
 const contactForm = document.querySelector(".contact-form");
 
-contactForm.addEventListener("submit", async function (e) {
-    e.preventDefault();
-
+if (contactForm) {
     const submitButton = contactForm.querySelector("button[type='submit']");
 
-    submitButton.disabled = true;
-    submitButton.textContent = "Sending...";
+    contactForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
 
-    try {
-        const response = await fetch(contactForm.action, {
-            method: "POST",
-            body: new FormData(contactForm),
-            headers: {
-                Accept: "application/json"
+        if (!submitButton) {
+            console.error("Contact form submit button not found.");
+            return;
+        }
+
+        const originalText = "Send Message ↗";
+
+        submitButton.disabled = true;
+        submitButton.textContent = "Sending...";
+
+        try {
+            const response = await fetch(contactForm.action, {
+                method: "POST",
+                body: new FormData(contactForm),
+                headers: {
+                    Accept: "application/json"
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error("Form submission failed.");
             }
-        });
 
-        if (response.ok) {
             contactForm.reset();
             submitButton.textContent = "Message Sent ✓";
 
-            setTimeout(() => {
+        } catch (error) {
+            console.error("Contact form error:", error);
+            submitButton.textContent = "Failed to send — Try again";
+
+        } finally {
+            // Keep the success message briefly, then restore the button.
+            if (submitButton.textContent === "Message Sent ✓") {
+                setTimeout(() => {
+                    submitButton.disabled = false;
+                    submitButton.textContent = originalText;
+                }, 3000);
+            } else {
                 submitButton.disabled = false;
-                submitButton.textContent = "Send Message ↗";
-            }, 3000);
-        } else {
-            submitButton.disabled = false;
-            submitButton.textContent = "Failed to send";
+            }
         }
+    });
+}
 
-    } catch (error) {
-        submitButton.disabled = false;
-        submitButton.textContent = "Something went wrong";
+// ================================
+// MOBILE NAVIGATION
+// ================================
 
-        console.error(error);
-    }
-});
 const menuToggle = document.querySelector(".menu-toggle");
 const navMenu = document.querySelector(".nav-menu");
 
+function closeMenu() {
+    if (!menuToggle || !navMenu) return;
+
+    navMenu.classList.remove("active");
+    menuToggle.classList.remove("active");
+    menuToggle.setAttribute("aria-expanded", "false");
+}
+
 if (menuToggle && navMenu) {
+    menuToggle.setAttribute(
+        "aria-expanded",
+        navMenu.classList.contains("active") ? "true" : "false"
+    );
+
     menuToggle.addEventListener("click", () => {
         const isOpen = navMenu.classList.toggle("active");
 
         menuToggle.classList.toggle("active", isOpen);
-        menuToggle.setAttribute("aria-expanded", isOpen);
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
     });
 
     navMenu.querySelectorAll("a").forEach((link) => {
-        link.addEventListener("click", () => {
-            navMenu.classList.remove("active");
-            menuToggle.classList.remove("active");
-            menuToggle.setAttribute("aria-expanded", "false");
-        });
+        link.addEventListener("click", closeMenu);
+    });
+
+    document.addEventListener("click", (event) => {
+        if (
+            navMenu.classList.contains("active") &&
+            !navMenu.contains(event.target) &&
+            !menuToggle.contains(event.target)
+        ) {
+            closeMenu();
+        }
+    });
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+            closeMenu();
+        }
     });
 }
-document.addEventListener("click", (e) => {
-    if (
-        navMenu &&
-        menuToggle &&
-        navMenu.classList.contains("active") &&
-        !navMenu.contains(e.target) &&
-        !menuToggle.contains(e.target)
-    ) {
-        navMenu.classList.remove("active");
-        menuToggle.classList.remove("active");
-        menuToggle.setAttribute("aria-expanded", "false");
-    }
-});
