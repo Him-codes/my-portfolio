@@ -904,3 +904,535 @@ a {
         transform: translateY(-7px) rotate(-45deg);
     }
 }
+
+/* =========================================
+   SOMTO PORTFOLIO — VISUAL POLISH
+========================================= */
+
+:root {
+    --accent: #ff6b2c;
+    --accent-soft: rgba(255, 107, 44, 0.1);
+    --page-bg: #080808;
+    --surface: #101010;
+    --surface-raised: #141414;
+    --border: #252525;
+    --text: #f5f5f5;
+    --muted: #929292;
+    --page-width: 1440px;
+    --section-space: clamp(76px, 9vw, 116px);
+}
+
+html {
+    scroll-padding-top: 90px;
+    scroll-behavior: smooth;
+}
+
+body {
+    overflow-x: clip;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+img {
+    max-width: 100%;
+}
+
+a,
+button,
+input,
+textarea {
+    -webkit-tap-highlight-color: transparent;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+}
+
+/* Consistent section spacing */
+
+.about-section,
+.projects-section,
+.services-section,
+.contact-section {
+    padding: var(--section-space) clamp(22px, 7%, 100px);
+    scroll-margin-top: 70px;
+}
+
+.about-section,
+.services-section {
+    background:
+        radial-gradient(
+            ellipse at top left,
+            rgba(255, 107, 44, 0.035),
+            transparent 55%
+        ),
+        #0d0d0d;
+}
+
+.section-heading {
+    max-width: 850px;
+    margin-bottom: clamp(36px, 5vw, 58px);
+}
+
+.section-heading .eyebrow,
+.contact-heading .eyebrow {
+    margin-bottom: 18px;
+}
+
+.section-heading h2,
+.contact-heading h2 {
+    text-wrap: balance;
+}
+
+.section-heading h2 {
+    font-size: clamp(2.5rem, 5.5vw, 4.7rem);
+    line-height: 1.04;
+    letter-spacing: -0.055em;
+}
+
+/* Navbar */
+
+.navbar {
+    padding: 20px clamp(22px, 7%, 100px);
+    background: rgba(8, 8, 8, 0.82);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: clamp(16px, 2.5vw, 32px);
+}
+
+.nav-menu a {
+    color: #aaa;
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
+}
+
+.nav-menu a:hover,
+.nav-menu a:focus-visible {
+    color: var(--accent);
+}
+
+.nav-btn {
+    border-radius: 999px;
+    padding: 10px 19px;
+}
+
+.menu-toggle {
+    flex-shrink: 0;
+}
+
+/* Hero */
+
+.hero {
+    width: 100%;
+    min-height: min(850px, 100svh);
+    padding: 145px clamp(22px, 7%, 100px) 90px;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: clamp(36px, 6vw, 88px);
+}
+
+.hero-content,
+.hero-card {
+    min-width: 0;
+}
+
+.hero h1 {
+    font-size: clamp(3.2rem, 6.5vw, 6rem);
+    letter-spacing: -0.065em;
+    line-height: 1.02;
+    text-wrap: balance;
+}
+
+.hero h1 span {
+    margin-top: 8px;
+}
+
+.hero-text {
+    font-size: clamp(1rem, 1.3vw, 1.12rem);
+    line-height: 1.85;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    gap: 8px;
+    border-radius: 9px;
+    padding: 13px 20px;
+}
+
+.primary-btn,
+.secondary-btn {
+    transition:
+        transform 0.22s ease,
+        background 0.22s ease,
+        border-color 0.22s ease,
+        color 0.22s ease;
+}
+
+.primary-btn:hover,
+.secondary-btn:hover {
+    transform: translateY(-2px);
+}
+
+.code-window {
+    transform: rotate(1deg);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.code-window:hover {
+    transform: rotate(0);
+    border-color: #414141;
+}
+
+/* Project cards: proper spacing between both projects */
+
+.projects-section {
+    background: #080808;
+}
+
+.projects-section > .project-card + .project-card {
+    margin-top: 28px;
+}
+
+.project-card {
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+    gap: clamp(28px, 4vw, 58px);
+    padding: clamp(20px, 3vw, 36px);
+    border-radius: 18px;
+    align-items: center;
+    background: linear-gradient(135deg, #121212, #0e0e0e);
+    transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+.project-card:hover {
+    border-color: #39302b;
+}
+
+.project-image {
+    aspect-ratio: 16 / 10;
+    display: flex;
+    align-items: center;
+    background: #0a0a0a;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+}
+
+.project-content {
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+}
+
+.project-number {
+    line-height: 1.6;
+    font-size: 0.7rem;
+}
+
+.project-content h3 {
+    font-size: clamp(2.6rem, 4.2vw, 4.2rem);
+    line-height: 1;
+    overflow-wrap: anywhere;
+}
+
+.project-type {
+    margin-bottom: 18px;
+}
+
+.project-description {
+    font-size: 0.96rem;
+    line-height: 1.8;
+    margin-bottom: 22px;
+    overflow-wrap: break-word;
+}
+
+.project-tech {
+    gap: 8px;
+    margin-bottom: 25px;
+}
+
+.project-tech span {
+    padding: 7px 10px;
+    line-height: 1.5;
+}
+
+.project-links {
+    gap: 10px;
+}
+
+/* Services */
+
+.services-grid {
+    gap: 16px;
+}
+
+.service-card {
+    min-height: 275px;
+    padding: clamp(24px, 3vw, 34px);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: 14px;
+}
+
+.service-icon {
+    margin-bottom: 34px;
+}
+
+.service-card h3 {
+    font-size: clamp(1.3rem, 2vw, 1.55rem);
+}
+
+.service-card p {
+    font-size: 0.95rem;
+    line-height: 1.8;
+}
+
+/* Contact */
+
+.contact-heading {
+    margin-bottom: clamp(38px, 5vw, 60px);
+}
+
+.contact-heading h2 {
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    letter-spacing: -0.06em;
+}
+
+.contact-grid {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: clamp(36px, 6vw, 80px);
+}
+
+.contact-value {
+    overflow-wrap: anywhere;
+}
+
+.contact-form {
+    padding: clamp(22px, 3.5vw, 35px);
+}
+
+.form-group input,
+.form-group textarea {
+    min-width: 0;
+    border-radius: 9px;
+}
+
+.contact-form button:disabled {
+    opacity: 0.7;
+    cursor: wait;
+}
+
+/* Footer */
+
+.footer {
+    padding: 64px clamp(22px, 7%, 100px) 24px;
+}
+
+.footer-top {
+    gap: clamp(28px, 5vw, 60px);
+}
+
+.footer-bottom {
+    gap: 16px;
+}
+
+.footer-bottom p {
+    line-height: 1.7;
+}
+
+/* Tablet */
+
+@media (max-width: 1000px) {
+    .hero {
+        gap: 36px;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
+    }
+
+    .project-card {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+
+    .contact-grid {
+        gap: 35px;
+    }
+
+    .about-grid {
+        gap: 42px;
+    }
+}
+
+/* Mobile */
+
+@media (max-width: 850px) {
+    .navbar {
+        position: relative;
+        padding: 16px 6%;
+        min-height: 76px;
+    }
+
+    .hero {
+        min-height: auto;
+        padding: 88px 6% 76px;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 42px;
+    }
+
+    .hero h1 {
+        font-size: clamp(2.9rem, 9vw, 4.8rem);
+        letter-spacing: -0.06em;
+    }
+
+    .hero-card {
+        margin-top: 0;
+    }
+
+    .code-window {
+        width: min(100%, 500px);
+    }
+
+    .about-grid,
+    .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .project-card {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 26px;
+        padding: 18px;
+    }
+
+    .project-image {
+        aspect-ratio: 16 / 10;
+    }
+
+    .project-content h3 {
+        font-size: clamp(2.7rem, 9vw, 4rem);
+    }
+
+    .project-description {
+        font-size: 0.94rem;
+    }
+
+    .project-links .btn {
+        flex: 1 1 auto;
+    }
+
+    .contact-grid {
+        gap: 35px;
+    }
+}
+
+/* Small phones */
+
+@media (max-width: 480px) {
+    .about-section,
+    .projects-section,
+    .services-section,
+    .contact-section {
+        padding: 72px 20px;
+    }
+
+    .section-heading {
+        margin-bottom: 34px;
+    }
+
+    .section-heading h2 {
+        font-size: clamp(2.25rem, 10vw, 3rem);
+        letter-spacing: -0.055em;
+    }
+
+    .hero {
+        padding: 72px 20px 60px;
+    }
+
+    .hero .eyebrow {
+        font-size: 0.68rem;
+        letter-spacing: 1.4px;
+        line-height: 1.8;
+    }
+
+    .hero h1 {
+        font-size: clamp(2.6rem, 12vw, 3.6rem);
+    }
+
+    .hero-buttons {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+    }
+
+    .code-content {
+        padding: 24px 18px;
+        font-size: 0.82rem;
+    }
+
+    .project-card {
+        padding: 14px;
+        gap: 22px;
+    }
+
+    .project-links {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .project-links .btn {
+        width: 100%;
+    }
+
+    .service-card {
+        min-height: 0;
+        padding: 24px;
+    }
+
+    .service-icon {
+        margin-bottom: 28px;
+    }
+
+    .contact-heading h2 {
+        font-size: clamp(2.7rem, 12vw, 4rem);
+    }
+
+    .contact-form {
+        padding: 20px;
+    }
+
+    .footer-top {
+        gap: 32px;
+    }
+
+    .footer-bottom {
+        align-items: flex-start;
+    }
+}
+
+/* Respect reduced-motion preferences */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
